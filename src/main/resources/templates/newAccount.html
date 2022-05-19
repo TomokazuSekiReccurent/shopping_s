@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規登録</title>
+</head>
+<body>
+	<!--新規ユーザー登録 GETメソッド -->
+	<!-- <form action="/newAccount" method="GET"> -->
+		<!-- <h1>新規登録</h1>
+		<p>名前</p>
+		<p>住所</p>
+		<p>電話番号</p>
+		<p>メールアドレス</p>
+		<p>パスワード</p>
+		<p>登録</p> -->
+
+		<p>新規登録画面です。情報を入力してください</p>
+		<form action="newAccount" method="post">
+			<p>
+				<input type="text" name="name" placeholder="名前" />
+			</p>
+			<p>
+				<input type="text" name="address" placeholder="住所" />
+			</p>
+			<p>
+				<input type="text" name="tel" placeholder="電話番号" />
+			</p>
+			<p>
+				<input type="text" name="email" placeholder="メールアドレス" />
+			</p>
+			<p>
+				<input type="text" name="pass" placeholder="パスワード" />
+			</p>
+
+			<input type="submit" value="登録"> <br> 
+			<span th:text=${message}></span>
+
+		</form>
+</body>
+</html>
