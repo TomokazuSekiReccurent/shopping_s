@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品追加ページ</title>
+</head>
+<body>
+	<h1>商品新規登録ページ</h1>
+
+	<p>商品登録画面です。情報を入力してください</p>
+	<form action="/addItem" method="post">
+		<p>
+			<input type="text" name="name" placeholder="商品名" />
+		</p>
+		<p>
+			<input type="text" name="price" placeholder="値段" />
+		</p>
+
+		<p>
+			<input type="text" name="delivaryDays" placeholder="お届け日数" />
+		</p>
+
+		<p>
+			<input type="text" name="picture" placeholder="画像" />
+		</p>
+
+		<input type="submit" value="登録"> <br>
+		 <span
+			th:text=${message}></span>
+			
+			<a th:href="addItemConfirm">商品一覧ページ</a>
+	</form>
+	
+			
+	
+
+</body>
+</html>

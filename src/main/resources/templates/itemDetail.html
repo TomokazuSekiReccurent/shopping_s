@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品詳細ページ</title>
+</head>
+<body>
+	<p>商品一覧</p>
+	
+	<!-- 次にわたすurl -->
+	<!-- <form action="/cart" method="post">
+	ここにデータベースに登録したitemsテーブルの情報を出力したい。
+	画像、商品名、詳細(値段)
+		<p>
+		<input type="text" name="name" placeholder="検索ボックス"/><input type="submit" value="検索">
+		</p>
+		
+		商品のカテゴリー一覧(まだリンク先作っていない)
+		<a href="/categories">カテゴリ一覧</a>
+	</form>
+ -->
+ <!-- ここに詳細を表示する -->
+	<table border="1">
+		<tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>お届け日数</th>
+			<th>購入</th>
+			
+		</tr>
+<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		<tr th:each="item:${items}">
+			<td th:text="${item.code}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td><a th:href="|/addCart/${item.code}|">カートに追加</a></td>
+		</tr>
+	</table>
+	
+	<hr>
+		<a href="/logout">ログアウト</a>
+</body>
+</html>

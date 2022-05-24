@@ -5,18 +5,43 @@
 <title>商品一覧ページ</title>
 </head>
 <body>
-<p>商品一覧</p>
-	<form action="/showItem" method="post">
-		<p><input type="text" name="name" placeholder="名前"/></p>
-		<p> 
-		<input type="text" name="pass" placeholder="パスワード"/>
+	<p>商品一覧</p>
+	<!-- 検索して出てくるように表示したい -->
+	<form action="/search"method="post">
+		<p>
+			<input type="text" name="name" placeholder="検索ボックス" /><input
+				type="submit" value="検索">								
 		</p>
-		<input type="submit" value="ログイン"> <br>
-		
-
-<span th:text=${message}></span>
-
 	</form>
+		<span th:text=${message}></span>
+
+	<!-- 商品のカテゴリー一覧(まだリンク先作っていない) -->
+
+	<table border="1">
+		<tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>写真</th>
+			<th>お届け日数</th>
+		</tr>
+		<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		<tr th:each="item:${items}">
+			<td th:text="${item.code}"></td>
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+			<td>
+				<img style="width: 100px;" th:src="|/${item.picture}|" />
+			</td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td><a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a></td>
+		</tr>
+	</table>
+
+	<hr>
+	<a href="/logout">ログアウト</a>
+
+	<!-- </form> -->
 
 </body>
 </html>

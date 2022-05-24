@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品購入画面</title>
+</head>
+<body>
+	<h1>商品購入画面</h1>
+	<h3>以下の商品で間違いありませんか？</h3>
+	<table border="1">
+		<tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>お届け日数</th>
+
+		</tr>
+		<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		<tr th:each="item:${items}">
+			<td th:text="${item.value.code}"></td>
+			<td th:text="${item.value.name}"></td>
+			<td th:text="${item.value.price}"></td>
+			<td th:text="${item.value.delivaryDays}"></td>
+
+		</tr>
+	</table>
+	<tr>
+		<td colspan="5" align="right" th:text="|総計:${total}|"></td>
+		<td></td>
+	</tr>
+
+	<!-- 購入者の情報を書く -->
+	<h3>お客様情報</h3>
+
+	<table>
+		<tr>
+			<td>お名前</td>
+			<td th:text="${session.user.name}"></td>
+
+		</tr>
+		<tr>
+			<td>住所</td>
+			<td th:text="${session.user.address}"></td>
+
+		</tr>
+		<tr>
+			<td>電話番号</td>
+			 <td th:text="${session.user.tel}"></td>
+
+		</tr>
+		<tr>
+			<td>e-mail</td>
+			 <td th:text="${session.user.email}"></td>
+		</tr>
+	</table>
+
+
+	
+	<form action="/ordered">
+		<input type="submit" value="注文確定">
+	</form> 
+
+	<hr>
+	<a href="/logout">ログアウト</a>
+	
+
+	
+
+</body>
+</html>

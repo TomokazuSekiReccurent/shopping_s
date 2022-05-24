@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー情報の更新</title>
+</head>
+<body>
+<h1>ユーザー情報の更新</h1>
+<h3>ユーザー情報を入力してください</h3>
+		<form action="newAccount" method="post">
+			<p>名前:
+				<input type="text" name="name" th:value="${session.user.name}" placeholder="名前" />
+			</p>
+			<p>住所:
+				<input type="text" name="address"th:value="${session.user.address}" placeholder="住所" />
+			</p>
+			<p>電話番号:
+				<input type="text" name="tel"th:value="${session.user.tel}" placeholder="電話番号" />
+			</p>
+			<p>メールアドレス:
+				<input type="text" name="email" th:value="${session.user.email}"placeholder="メールアドレス" />
+			</p>
+			<p>パスワード:
+				<input type="text" name="pass"th:value="${session.user.pass}" placeholder="パスワード" />
+			</p>
+		<!-- 	<span th:text=${message}></span> -->
+
+			<input type="submit" value="更新"> <br> 
+			
+		</form>
+		
+
+</body>
+</html>

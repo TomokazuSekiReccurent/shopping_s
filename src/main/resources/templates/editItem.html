@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品情報の更新</title>
+</head>
+<body>
+<h1>商品情報更新</h1>
+
+
+ <form th:action="|/editItem/${code}|" method="post">
+<span th:text=${message}></span>
+	<!-- <table border="1">
+		<tr>
+
+			<th>商品名</th>
+			<th>値段</th>
+			<th>お届け日数</th>
+			<th>画像</th>
+	</table> -->
+			
+
+		<!-- </tr> -->
+		<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		<p>
+				<input type="text" name="name" placeholder="商品名" />
+			</p>
+			
+			<p>
+				<input type="text" name="price" placeholder="値段" />
+			</p>
+			<p>
+				<input type="text" name="delivaryDays" placeholder="お届け日数" />
+			</p>
+			<p>
+				<input type="text" name="picture" placeholder="画像" />
+			</p>
+
+			<input type="submit" value="登録"> <br>
+
+
+		<!-- <input type="submit" value="登録"> -->
+</form>
+
+</body>
+</html>

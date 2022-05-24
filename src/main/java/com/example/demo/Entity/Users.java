@@ -52,6 +52,15 @@ public class Users {
 		
 	}
 
+	public Users(String name, String address, String tel, String email, String pass) {
+		super();
+		this.name = name;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.pass = pass;
+	}
+
 	public Integer getCode() {
 		return code;
 	}

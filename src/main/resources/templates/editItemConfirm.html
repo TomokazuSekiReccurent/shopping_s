@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品登録確定</title>
+</head>
+<body>
+	<h1>商品一覧</h1>
+	<span th:text=${message}></span>
+<a href="/showItem">商品購入画面</a>
+	<a href="/logout">ログアウト</a>
+
+	<table border="1">
+		<tr>
+
+			<th>商品名</th>
+			<th>値段</th>
+			<th>お届け日数</th>
+			<th>画像</th>
+			<th>更新</th>
+			<th>削除</th>
+
+		</tr>
+		<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		<tr th:each="item:${items}">
+
+			<td th:text="${item.name}"></td>
+			<td th:text="${item.price}"></td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td th:text="${item.picture}"></td>
+			<td><a th:href="|/editItem/${item.code}|">更新</a></td>
+			<td><a th:href="|/deleteItem/${item.code}|">削除</a></td>
+
+		</tr>
+	</table>
+
+	<!-- <input type="submit" value="登録"> -->
+	<br>
+	
+
+</body>
+</html>

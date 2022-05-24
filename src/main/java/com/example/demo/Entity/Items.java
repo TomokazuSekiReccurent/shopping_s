@@ -4,42 +4,84 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 //itemsのコンストラクタをexcelのデータ使って作成
 @Entity
-@Table(name="items")
+@Table(name = "items")
 public class Items {
-	
+
 	@Id
-	@Column(name="code")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "code")
 	private Integer code;
-		
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
-	
-	@Column(name="price")
+
+	@Column(name = "price")
 	private Integer price;
-	
-	@Column(name="picture")
+
+	@Column(name = "picture")
 	private String picture;
-	
-	@Column(name="stock")
+
+	@Transient
 	private Integer stock;
-	
-	@Column(name="category_key")
-	private Integer category_key;
-	
-	@Column(name="delivary_days")
-	private Integer delivary_days;
-	
-	@Column(name="seller_user_code")
-	private Integer seller_user_code;
-	
-	@Column(name="date")
+
+	@Column(name = "category_key")
+	private Integer categoryKey;
+
+	@Column(name = "delivary_days")
+	private Integer delivaryDays;
+
+	@Column(name = "seller_user_code")
+	private Integer sellerUserCode;
+
+	@Column(name = "date")
 	private Date date;
+
+	@Column(name = "delete_flag")
+	private Integer deleteFlag;
+
+	public Items() {
+		super();
+	}
+
+	public Items(Integer code, String name, Integer price, String picture, Integer stock, Integer categoryKey,
+			Integer delivaryDays, Integer sellerUserCode) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.price = price;
+		this.picture = picture;
+		this.stock = stock;
+		this.categoryKey = categoryKey;
+		this.delivaryDays = delivaryDays;
+		this.sellerUserCode = sellerUserCode;
+		this.date = new Date();
+		this.deleteFlag = 0;
+	}
+
+//	public Items(Integer code, String name, Integer price, String picture) {
+//		super();
+//		this.code = code;
+//		this.name = name;
+//		this.price = price;
+//		
+//	}
+
+	public Items(String name, Integer price,Integer delivaryDays,String picture) {
+		this.name=name;
+		this.price=price;
+		this.delivaryDays=delivaryDays;
+		this.picture=picture;
 	
+	}
+
 	public Integer getCode() {
 		return code;
 	}
@@ -72,36 +114,28 @@ public class Items {
 		this.picture = picture;
 	}
 
-	public Integer getStock() {
-		return stock;
+	public Integer getCategoryKey() {
+		return categoryKey;
 	}
 
-	public void setStock(Integer stock) {
-		this.stock = stock;
+	public void setCategoryKey(Integer categoryKey) {
+		this.categoryKey = categoryKey;
 	}
 
-	public Integer getCategory_key() {
-		return category_key;
+	public Integer getDelivaryDays() {
+		return delivaryDays;
 	}
 
-	public void setCategory_key(Integer category_key) {
-		this.category_key = category_key;
+	public void setDelivaryDays(Integer delivaryDays) {
+		this.delivaryDays = delivaryDays;
 	}
 
-	public Integer getDelivary_days() {
-		return delivary_days;
+	public Integer getSellerUserCode() {
+		return sellerUserCode;
 	}
 
-	public void setDelivary_days(Integer delivary_days) {
-		this.delivary_days = delivary_days;
-	}
-
-	public Integer getSeller_user_code() {
-		return seller_user_code;
-	}
-
-	public void setSeller_user_code(Integer seller_user_code) {
-		this.seller_user_code = seller_user_code;
+	public void setSellerUserCode(Integer sellerUserCode) {
+		this.sellerUserCode = sellerUserCode;
 	}
 
 	public Date getDate() {
@@ -112,16 +146,20 @@ public class Items {
 		this.date = date;
 	}
 
-	public Integer getDelete_flag() {
-		return delete_flag;
+	public Integer getDeleteFlag() {
+		return deleteFlag;
 	}
 
-	public void setDelete_flag(Integer delete_flag) {
-		this.delete_flag = delete_flag;
+	public void setDeleteFlag(Integer deleteFlag) {
+		this.deleteFlag = deleteFlag;
 	}
 
-	@Column(name="delete_flag")
-	private Integer delete_flag;
-	
+	public Integer getStock() {
+		return stock;
 	}
 
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+}
