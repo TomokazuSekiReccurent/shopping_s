@@ -3,13 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>商品追加ページ</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
+<div>
 	<h1>商品新規登録ページ</h1>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 	<p>商品登録画面です。情報を入力してください</p>
 	<form action="/addItem" method="post">
-		<p>
+	
+	<span th:replace="itemInfoReplace"></span>
+	<!-- このしたをreplace -->
+		<!-- <p>
 			<input type="text" name="name" placeholder="商品名" />
 		</p>
 		<p>
@@ -25,8 +36,8 @@
 		</p>
 
 		<input type="submit" value="登録"> <br>
-		 <span
-			th:text=${message}></span>
+		 -->
+			 <span th:text=${message}></span>
 			
 			<a th:href="addItemConfirm">商品一覧ページ</a>
 	</form>

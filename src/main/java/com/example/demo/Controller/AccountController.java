@@ -35,6 +35,17 @@ public class AccountController {
 		// top.htmlに移動する
 		return "top";
 	}
+	
+	//menu画面に戻れる処理を書く
+	@RequestMapping("/loginAfter")
+	public String loginAfter() {
+		// 削除のやつを入れる
+//		session.invalidate();
+		// top.htmlに移動する
+		return "loginAfter";
+	}
+	
+
 
 	@RequestMapping("/logout")
 	public String logout() {

@@ -3,10 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>商品情報の更新</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
+<div>
 <h1>商品情報更新</h1>
-
+</div>
+<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
  <form th:action="|/editItem/${code}|" method="post">
 <span th:text=${message}></span>
@@ -18,11 +25,40 @@
 			<th>お届け日数</th>
 			<th>画像</th>
 	</table> -->
+			<!-- <table border="1" class="itemlist" style="width:90%;">
+		<tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>写真</th>
+			<th>お届け日数</th>
+		</tr>
+		valueを消す
+		<tr th:each="item:${items}">
+			<td><img th:src="|/${item.picture}|" /></td>
+			<td th:text="${item.code}"></td>
 			
-
+			<td class="td_left">
+				<p><span>商品名：</span><span th:text="${item.name}"></span></p>
+				<p><span>値段：</span><span th:text="${item.price}"></span></p>
+				<p><span>お届け日数：</span><span th:text="${item.delivaryDays}"></span></p>
+				<p class="item_link">
+					<a th:href="|/editItem/${item.code}|">更新</a>
+					<a th:href="|/deleteItem/${item.code}|">削除</a>
+				</p>
+			</td>
+			
+			<td th:text="${item.price}"></td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td><a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a></td>
+		</tr>
+	</table> 
+ -->
 		<!-- </tr> -->
 		<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
-		<p>
+		<!-- <span th:replace="itemInfoReplace"></span> -->
+		<!-- このしたをreplace -->
+		 <p>
 				<input type="text" name="name" placeholder="商品名" />
 			</p>
 			
@@ -40,6 +76,7 @@
 
 
 		<!-- <input type="submit" value="登録"> -->
+		<a href="/addItemConfirm">商品一覧ページへ</a>
 </form>
 
 </body>

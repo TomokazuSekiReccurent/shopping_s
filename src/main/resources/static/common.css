@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+/* カートの中身のNO等の位置を変える */
+body {
+	overflow-x: hidden;
+	margin: 1;
+	padding: 0;
+	/* 背景の色を変える */
+	 background-color:#80ffff;/* ライトブルー */
+	/* background-image:url("tengoku.jpg"); */
+	text-align:center;
+}
+
+.logout {
+	font-weight: bold;
+	color: #ff0000;/* 赤 */
+}
+
+div{
+	 position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    /* 背景色: カラーコードで検索 */
+    background-color: #f0ffff;
+
+    /* 下線 */
+    border-bottom: 1px solid #aaa;
+
+    /* 内部に取る余白 */
+    padding: 10px;
+}
+
+table{
+	margin: auto;
+	background-color: #fff;
+}
+
+.td_left > p{
+	text-align:left;
+	margin: 0;
+}
+
+.item_link{
+	
+	text-align: right!important;
+}
+
+.itemlist td:first-child{
+	width:100px;
+}
+
+td > img{
+	background-color: white;
+	width: auto;
+	max-width: 100px;
+	height: 5em;
+}
+
+/* h1タグ(カートの中身)を変化させる
+黒系のほうが落ち着く気がする */
+h1 {
+	color: #000040;
+	/*  padding: 1rem 2rem; */
+  background: #f4f4f4;
+  text-align:center;
+	
+}
+
+/* pタグを変える */
+.title {
+	font-weight: bold;
+	font-size: 20px;
+	color: black;
+	text-align:center;
+}
+
+/* aタグの色を青色に変化する
+青色はリンク先を飛ばす時に使われていると思ったので */
+a {
+	font-weight: bold;
+	color: blue;
+	text-align:center;
+}
+
+tr {
+	color: black;
+	text-align:center;
+}
+
+td {
+	color: #2F4F4F;
+	font-weight: bold;
+	text-align:center;
+}
+
+
+
+

@@ -3,37 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <title>ユーザー情報</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
-<h1>ユーザー情報</h1>
-<span th:text=${message}></span>
+	<h1>ユーザー情報</h1>
+	<span th:text=${message} style=color:red></span>
 
-<a href="/userInfoConfirm">ユーザー情報の編集</a>
+	<a href="/userInfoConfirm">ユーザー情報の編集</a>
 	<a href="/login">ログイン画面へ</a>
+	<a href="/loginAfter">menu画面へ</a>
 
-	<!-- <table border="1">
-		<tr>
 
-			<th>名前</th>
-			<th>住所</th>
-			<th>電話番号</th>
-			<th>e-mail</th>
-			<th>パスワード</th>
-
-		</tr>
-		ここでitemsテーブルのデータベースの情報を出力したい
-		<tr th:each="user:${users}">
-
-			<td th:text="${user.value.name}"></td>
-			<td th:text="${user.value.address}"></td>
-			<td th:text="${{user.value.tel}"></td>
-			<td th:text="${{user.value.email}"></td>
-			<td th:text="${{user.value.pass}"></td>
-			<td><a th:href="userInfoConfirm">更新</a></td>
-			<td><a th:href="/">削除</a></td> -->
-			
-			
-			<h3>お客様情報</h3>
+	<h3>お客様情報</h3>
 
 	<table>
 		<tr>
@@ -56,9 +37,6 @@
 			<td th:text="${session.user.email}"></td>
 		</tr>
 	</table>
-
-	<!-- 	</tr>
-	</table> -->
 
 </body>
 </html>

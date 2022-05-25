@@ -3,11 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <title>商品購入画面</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
 	<h1>商品購入画面</h1>
 	<h3>以下の商品で間違いありませんか？</h3>
-	<table border="1">
+	
+	<!-- <span th:replace="orderedReplace"></span> -->
+	
+	<table border="1" class="itemlist" style="width:90%;">
+		<!-- <tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>写真</th>
+			<th>お届け日数</th>
+		</tr> -->
+		
+		<tr th:each="item:${items}">
+			<td><img th:src="|/${item.value.picture}|" /></td>
+			<!-- <td th:text="${item.code}"></td> -->
+			
+			<td class="td_left">
+				<p><span>商品名：</span><span th:text="${item.value.name}"></span></p>
+				<p><span>値段：</span><span th:text="${item.value.price}"></span></p>
+				<p><span>お届け日数：</span><span th:text="${item.value.delivaryDays}"></span></p>
+				<p class="item_link">
+					
+					<a th:href="|/deleteCart/${code}|">削除</a>
+				</p>
+			</td>
+			
+			<!-- <td th:text="${item.price}"></td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td><a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a></td> -->
+		</tr>
+	</table>
+	<!--orderedReplaceに処理を任せた  -->
+	<!-- <table border="1">
 		<tr>
 			<th>NO</th>
 			<th>商品名</th>
@@ -15,7 +48,7 @@
 			<th>お届け日数</th>
 
 		</tr>
-		<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		ここでitemsテーブルのデータベースの情報を出力したい
 		<tr th:each="item:${items}">
 			<td th:text="${item.value.code}"></td>
 			<td th:text="${item.value.name}"></td>
@@ -24,12 +57,14 @@
 
 		</tr>
 	</table>
+	<table>
 	<tr>
 		<td colspan="5" align="right" th:text="|総計:${total}|"></td>
 		<td></td>
 	</tr>
+	</table>
 
-	<!-- 購入者の情報を書く -->
+	購入者の情報を書く
 	<h3>お客様情報</h3>
 
 	<table>
@@ -52,7 +87,7 @@
 			<td>e-mail</td>
 			 <td th:text="${session.user.email}"></td>
 		</tr>
-	</table>
+	</table> -->
 
 
 	
@@ -61,7 +96,8 @@
 	</form> 
 
 	<hr>
-	<a href="/logout">ログアウト</a>
+	<!-- ログアウトのreplace -->
+	<span th:replace="/logout"></span>
 	
 
 	

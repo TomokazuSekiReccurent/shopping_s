@@ -3,38 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <title>購入画面</title>
+ <link rel="stylesheet" href="/common.css">
+ <!-- <link rel="stylesheet" href="/addCartStyle.css"> -->
 </head>
 <body>
-<h1>カートの中身</h1>
-<table border="1">
+<div>
+	<h1>カートの中身</h1>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<!-- <table border="1">
 		<tr>
 			<th>NO</th>
 			<th>商品名</th>
 			<th>値段</th>
+			<th>写真</th>
 			<th>お届け日数</th>
-			<!-- <th>購入</th> -->
+			<th>購入</th>
 			<th>削除</th>
 		</tr>
-<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+		ここでitemsテーブルのデータベースの情報を出力したい
 		<tr th:each="item:${items}">
 			<td th:text="${item.value.code}"></td>
 			<td th:text="${item.value.name}"></td>
 			<td th:text="${item.value.price}"></td>
+			<td><img style="width: 100px;" th:src="|/${item.value.picture}|" /></td>
 			<td th:text="${item.value.delivaryDays}"></td>
-			<!-- <td><a href="/purchaseCart">購入</a></td> -->
+			<td><a href="/purchaseCart">購入</a></td>
 			<td><a th:href="|/deleteCart/${code}|">削除</a></td>
-		</tr> 
-	</table>
+		</tr>
+	</table> -->
 	
+	<table border="1" class="itemlist" style="width:90%;">
+		<!-- <tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>写真</th>
+			<th>お届け日数</th>
+		</tr> -->
+		
+		<tr th:each="item:${items}">
+			<td><img th:src="|/${item.value.picture}|" /></td>
+			<!-- <td th:text="${item.code}"></td> -->
+			
+			<td class="td_left">
+				<p><span>商品名：</span><span th:text="${item.value.name}"></span></p>
+				<p><span>値段：</span><span th:text="${item.value.price}"></span></p>
+				<p><span>お届け日数：</span><span th:text="${item.value.delivaryDays}"></span></p>
+				<p class="item_link">
+					<!-- <a href="/purchaseCart">購入</a> -->
+					<a th:href="|/deleteCart/${code}|">削除</a>
+				</p>
+			</td>
+			
+			<!-- <td th:text="${item.price}"></td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td><a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a></td> -->
+		</tr>
+	</table>
+
 	<a href="/showItem">商品一覧</a>
 	<form action="/purchaseCart">
-	<!-- 注文確定のページ作る -->
-	<input type="submit"value="注文確定">
+		<!-- 注文確定のページ作る -->
+		<input type="submit" value="注文確定">
 	</form>
-	
-	
+
+
 	<hr>
-		<a href="/logout">ログアウト</a>
+	<!-- ログアウトのreplace -->
+	<span th:replace="/logout"></span>
 
 </body>
 </html>

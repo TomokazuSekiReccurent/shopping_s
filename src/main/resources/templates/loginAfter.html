@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>ログイン完了</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
 	<p>ログイン完了です</p>
+	<p>menu画面</p>
 
 	<p>
 		<a href="/showItem">商品購入一覧ページへ移動</a>
 	</p>
-	
+
 	<p>
 		<a href="/addItem">商品登録画面へ移動</a>
 	</p>
@@ -18,9 +20,10 @@
 	<p>
 		<a href="/userInfo">ユーザー情報</a>
 	</p>
-	
+
 	<p>
-		<a href="/logout">ログアウト</a>
+		<!-- ログアウトのreplace -->
+		<span th:replace="/logout"></span>
 	</p>
 
 </body>

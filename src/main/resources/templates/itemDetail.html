@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>商品詳細ページ</title>
+<link rel="stylesheet" href="/common.css">
 </head>
 <body>
-	<p>商品一覧</p>
+	<p>商品詳細</p>
 	
 	<!-- 次にわたすurl -->
 	<!-- <form action="/cart" method="post">
@@ -20,26 +21,59 @@
 	</form>
  -->
  <!-- ここに詳細を表示する -->
-	<table border="1">
+	<!-- <table border="1">
 		<tr>
 			<th>NO</th>
 			<th>商品名</th>
 			<th>値段</th>
+			<th>写真</th>
 			<th>お届け日数</th>
 			<th>購入</th>
 			
 		</tr>
-<!-- ここでitemsテーブルのデータベースの情報を出力したい -->
+ここでitemsテーブルのデータベースの情報を出力したい
 		<tr th:each="item:${items}">
 			<td th:text="${item.code}"></td>
 			<td th:text="${item.name}"></td>
 			<td th:text="${item.price}"></td>
+			<td><img style="width: 100px;" th:src="|/${item.picture}|" /></td>
 			<td th:text="${item.delivaryDays}"></td>
 			<td><a th:href="|/addCart/${item.code}|">カートに追加</a></td>
 		</tr>
+	</table> -->
+	
+	<table border="1" class="itemlist" style="width:90%;">
+		<!-- <tr>
+			<th>NO</th>
+			<th>商品名</th>
+			<th>値段</th>
+			<th>写真</th>
+			<th>お届け日数</th>
+		</tr> -->
+		
+		<tr th:each="item:${items}">
+			<td><img th:src="|/${item.picture}|" /></td>
+			<!-- <td th:text="${item.code}"></td> -->
+			
+			<td class="td_left">
+				<p><span>商品名：</span><span th:text="${item.name}"></span></p>
+				<p><span>値段：</span><span th:text="${item.price}"></span></p>
+				<p><span>お届け日数：</span><span th:text="${item.delivaryDays}"></span></p>
+				<p class="item_link">
+					<!-- <a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a> -->
+					<a th:href="|/addCart/${item.code}|">カートに追加</a>
+				</p>
+			</td>
+			
+			<!-- <td th:text="${item.price}"></td>
+			<td th:text="${item.delivaryDays}"></td>
+			<td><a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a></td> -->
+		</tr>
 	</table>
+	<a href="/showItem">商品一覧ページへ</a>
 	
 	<hr>
-		<a href="/logout">ログアウト</a>
+		<!-- ログアウトのreplace -->
+	<span th:replace="/logout"></span>
 </body>
 </html>
