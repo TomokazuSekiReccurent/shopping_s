@@ -16,9 +16,9 @@
 	<br>
 
 	<p>商品登録画面です。情報を入力してください</p>
-	<form action="/addItem" method="post">
+	<form action="/addItem" method="post"onsubmit="return chk01(event);">
 	
-	<span th:replace="itemInfoReplace"></span>
+		<span th:replace="itemInfoReplace"></span>
 	<!-- このしたをreplace -->
 		<!-- <p>
 			<input type="text" name="name" placeholder="商品名" />
@@ -39,8 +39,8 @@
 		 -->
 			 <span th:text=${message}></span>
 			
-			<a th:href="addItemConfirm">商品一覧ページ</a>
 	</form>
+	<a th:href="addItemConfirm">商品一覧ページ</a>
 	
 			
 	

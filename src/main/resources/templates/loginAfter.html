@@ -4,10 +4,14 @@
 <meta charset="UTF-8">
 <title>ログイン完了</title>
 <link rel="stylesheet" href="/common.css">
+<link rel="stylesheet" href="/loginAfter.css">
 </head>
 <body>
 	<p>ログイン完了です</p>
-	<p>menu画面</p>
+	<!-- ログイン中と出す -->
+	<span th:text="'('+${session.name}+'さんがログイン中)'"></span>
+	
+	<p class="menu">menu画面</p>
 
 	<p>
 		<a href="/showItem">商品購入一覧ページへ移動</a>

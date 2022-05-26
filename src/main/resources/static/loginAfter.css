@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+/* loginAfterのnameさんがログイン中を赤色にする */
+span{
+	/* 赤色 */
+	color:red;
+}
+
+/* menu画面を変化させる */
+.menu{
+	/* 緑にする */
+	color:green;
+	
+	 padding: Auto;
+   font-weight: bold;
+    background: #f2f2f2;
+    text-align:center;
+}

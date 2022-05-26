@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {
+	background-image: url(kansya.png);
+	background-position: left;
+	background-repeat: no-repeat;
+	background-size: 40% auto;
+    height: 800px;
+
+}

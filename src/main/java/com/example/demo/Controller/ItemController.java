@@ -100,6 +100,9 @@ public class ItemController {
 	// 商品追加の処理
 	@RequestMapping(value = "/addItem", method = RequestMethod.GET)
 	public ModelAndView addItem(ModelAndView mv) {
+		Items item = new Items();
+		mv.addObject("item",item);
+		mv.setViewName("addItem");
 		return mv;
 	}
 
@@ -109,6 +112,10 @@ public class ItemController {
 			@RequestParam(name = "price", defaultValue = "0") Integer price,
 			@RequestParam(name = "delivaryDays", defaultValue = "0") Integer delivaryDays,
 			@RequestParam(name = "picture") String picture, ModelAndView mv) {
+
+		// データベースに登録
+		Items item = new Items(name, price, delivaryDays, picture);
+		mv.addObject("item",item);
 
 		if (name == null || name.length() == 0 && price == null || price <= 0 && delivaryDays == null
 				|| delivaryDays <= 0 && picture == null || picture.length() == 0) {
@@ -146,9 +153,6 @@ public class ItemController {
 			mv.setViewName("addItem");
 			return mv;
 		}
-
-		// データベースに登録
-		Items item = new Items(name, price, delivaryDays, picture);
 		itemsRepository.saveAndFlush(item);
 
 		mv.addObject("items", itemsRepository.findAll(Sort.by(Direction.ASC, "code")));

@@ -30,80 +30,85 @@ public class AccountController {
 	// トップページ表示(top.html)
 	@RequestMapping("/")
 	public String login() {
-		// 削除のやつを入れる
-//		session.invalidate();
 		// top.htmlに移動する
 		return "top";
 	}
-	
-	//menu画面に戻れる処理を書く
+
+	// menu画面に戻れる処理を書く
 	@RequestMapping("/loginAfter")
 	public String loginAfter() {
-		// 削除のやつを入れる
-//		session.invalidate();
 		// top.htmlに移動する
 		return "loginAfter";
 	}
-	
 
-
+//ログアウトの処理
 	@RequestMapping("/logout")
 	public String logout() {
+		// セッション情報を削除する
 		session.invalidate();
+		// top.htmlに移動する
 		return "top";
 	}
 
+	// "/login"を呼び出す処理。入力する場所で、get
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login(ModelAndView mv) {
 		return mv;
 	}
 
-	// ログイン実行
+	// "/login"を呼び出す処理。name,passを入力した後の場所のため、1人ずつページ内の情報が違うのでpost
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(name = "name") String name, @RequestParam(name = "pass") String pass,
 			ModelAndView mv) {
 
 		// 名前未入力チェック
 		if (name == null || name.length() == 0) {
-			// 未入力はログイン画面(login.html)に戻る
+			// 未入力はログイン画面に名前を入力してくださいと出力
 			mv.addObject("message", "名前を入力してください");
+			// 未入力はログイン画面(login.html)に戻る
 			mv.setViewName("login");
 			return mv;
 		}
 		// パスワード未入力
 		if (pass == null || pass.length() == 0) {
-			// 未入力はログイン画面に戻る
+			// 未入力はログイン画面に名前を入力してくださいと出力
 			mv.addObject("message", "パスワードを入力してください");
 			// 未入力はログイン画面(login.html)に戻る
 			mv.setViewName("login");
 			return mv;
 		}
+		// 入力したnameとpassをusersRepositoryの中に含まれている情報と一致するか調べる。
 		Users users = usersRepository.findByNameAndPass(name, pass);
+		// usersRepositoryの中に入っている情報を違う場合の処理
 		if (users == null) {
-			mv.addObject("message,", "名前またはパスワードが違います");
+			// 未入力もしくは間違いはログイン画面に間違いを指摘
+			mv.addObject("message", "名前またはパスワードが違います");
+			//login画面に表示させる
 			mv.setViewName("login");
-		} else {//
+			return mv;
+		} else {
+			// 入力された情報が正しいなら、入力された情報(users)がhtmlで使えるようにするため、addObjectする。
 			mv.addObject("users", users);
-
+			// 入力された情報(users)をセッションに格納する
 			session.setAttribute("user", users);
-
+			// nameさんがログイン中と出力
+			session.setAttribute("name", name);
+			// loginAfter.htmlで入力された情報(users)を扱えるようにする
 			mv.setViewName("loginAfter");
+			return mv;
 		}
-
-		// ログイン押した後のページに移動する(loginAfter)
-//	mv.setViewName("loginAfter");
-
-		return mv;
+		/* return mv; */
 
 	}
 
-	// newAcountの情報を記載する
+	// newAcountの情報を記載する.新規登録画面で全員同じ画面が出るのでget
 	@RequestMapping(value = "/newAccount", method = RequestMethod.GET)
 	public ModelAndView newAcount(ModelAndView mv) {
 		return mv;
 	}
 
-	// ユーザー登録
+	// ユーザー登録を行う。入力された情報(名前、住所、電話番号等)は1人ずつ情報が違うのでpost
+	// @RequestParamで入力された情報をname等の定義した変数で扱えるようにする
 	@RequestMapping(value = "/newAccount", method = RequestMethod.POST)
 	public ModelAndView newAcount(@RequestParam(name = "name") String name,
 			@RequestParam(name = "address") String address, @RequestParam(name = "tel") String tel,
@@ -111,41 +116,42 @@ public class AccountController {
 
 		// 名前未入力チェック
 		if (name == null || name.length() == 0) {
-			// 未入力はログイン画面に戻る
+			// 未入力はメッセージが出る
 			mv.addObject("message", "名前を入力してください");
 			mv.setViewName("newAccount");
 			return mv;
 		}
 		// パスワード未入力
 		if (address == null || address.length() == 0) {
-			// 未入力はログイン画面に戻る
+			// 未入力はメッセージが出る
 			mv.addObject("message", "住所を入力してください");
 			mv.setViewName("newAccount");
 			return mv;
 		}
 		// パスワード未入力
 		if (tel == null || tel.length() == 0) {
-			// 未入力はログイン画面に戻る
+			// 未入力はメッセージが出る
 			mv.addObject("message", "電話番号を入力してください");
 			mv.setViewName("newAccount");
 			return mv;
 		}
 		// パスワード未入力
 		if (email == null || email.length() == 0) {
-			// 未入力はログイン画面に戻る
+			// 未入力はメッセージが出る
 			mv.addObject("message", "メールアドレスを入力してください");
 			mv.setViewName("newAccount");
 			return mv;
 		}
 		// パスワード未入力
 		if (pass == null || pass.length() == 0) {
-			// 未入力はログイン画面に戻る
+			// 未入力はメッセージが出る
 			mv.addObject("message", "パスワードを入力してください");
 			mv.setViewName("newAccount");
 			return mv;
 		}
-
-		// 重複チェック
+		// 全ての情報を入力したときの処理
+		// 名前の重複チェック
+		// usersRepositoryに登録されているnameの情報をexisteduserとしてList化する。
 		List<Users> existedUser = usersRepository.findByName(name);
 
 		// データが1件以上取れた場合、登録しない
@@ -155,22 +161,18 @@ public class AccountController {
 			mv.setViewName("newAccount");
 			return mv;
 		}
-
-//		mv.addObject("message", "情報を確定しますか?");
-//		mv.setViewName("newAccount");
-		// データベースに登録
+		// データが取れなかった(重複が見られなかった)時の処理
+		// 入力されたすべての情報をusersに格納
 		Users users = new Users(name, address, tel, email, pass);
-		// ここで新規登録の情報をデータベースに登録している
+		// usersに格納された情報をデータベース(usersRepository)に登録
 		usersRepository.saveAndFlush(users);
-
+		// usersRepositoryの情報を探してusersとしてhtmlで扱えるようにaddObject
 		mv.addObject("users", usersRepository.findAll());
-
+		// login.htmlで扱えるようにする
 		mv.setViewName("login");
 
 		return mv;
 	}
-
-
 
 // ユーザー情報
 	@RequestMapping(value = "/userInfo", method = RequestMethod.POST)
@@ -270,4 +272,5 @@ public class AccountController {
 		mv.setViewName("userInfoConfirm");
 		return mv;
 	}
+
 }

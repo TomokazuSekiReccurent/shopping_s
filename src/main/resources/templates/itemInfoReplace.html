@@ -4,15 +4,38 @@
 			<input type="text" name="name" placeholder="商品名" />
 		</p>
 		<p>
-			<input type="text" name="price" placeholder="値段" />
+			<input type="text" name="price" th:value="${item.price}"id="price" placeholder="値段" />
 		</p>
 
 		<p>
-			<input type="text" name="delivaryDays" placeholder="お届け日数" />
+			<input type="text" name="delivaryDays" th:value="${item.delivaryDays}" id="delivaryDays" placeholder="お届け日数" />
 		</p>
 
 		<p>
 			<input type="text" name="picture" placeholder="画像" />
 		</p>
 
-		<input type="submit" value="登録"> <br>
+		<input type="submit" value="登録" class="shadow"> <br>
+		
+		<script type="text/javascript">
+
+	function chk01(e){
+		// categoryKeyの値を取得
+		let price = document.getElementById("price");
+		let delivaryDays = document.getElementById("delivaryDays");
+		
+		let reg = new RegExp(/^[0-9]+$/);
+		if(reg.test(price.value) && reg.test(delivaryDays.value)){
+			return true;
+		}
+		else if(!reg.test(price.value)){
+			window.alert("値段は数値で入力してください");
+			return false;
+		}else if(!reg.test(delivaryDays.value)){
+			window.alert("お届け日数は数値で入力してください");
+			return false;
+		}
+
+	}
+</script>
+		

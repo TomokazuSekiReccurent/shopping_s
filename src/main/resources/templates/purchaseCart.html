@@ -39,6 +39,13 @@
 			<td><a th:href="|/itemDetail/${item.code}|">商品詳細ページ</a></td> -->
 		</tr>
 	</table>
+	
+	<table>
+	<tr>
+		<td colspan="5" align="right" th:text="|総計:${total}|"></td>
+		<td></td>
+	</tr>
+	</table>
 	<!--orderedReplaceに処理を任せた  -->
 	<!-- <table border="1">
 		<tr>
@@ -56,12 +63,6 @@
 			<td th:text="${item.value.delivaryDays}"></td>
 
 		</tr>
-	</table>
-	<table>
-	<tr>
-		<td colspan="5" align="right" th:text="|総計:${total}|"></td>
-		<td></td>
-	</tr>
 	</table>
 
 	購入者の情報を書く
@@ -92,7 +93,7 @@
 
 	
 	<form action="/ordered">
-		<input type="submit" value="注文確定">
+		<input type="submit" value="注文確定" class="shadow">
 	</form> 
 
 	<hr>

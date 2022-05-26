@@ -4,9 +4,12 @@
 <meta charset="UTF-8">
 <title>購入完了画面</title>
 <link rel="stylesheet" href="/common.css">
+<link rel="stylesheet" href="/ordered.css">
+
 </head>
 <body>
 	<h1>ご注文ありがとうございました。</h1>
+	
 
 <!-- <span th:replace="orderedReplace"></span> -->
 <table border="1" class="itemlist" style="width:90%;">
@@ -37,9 +40,20 @@
 		</tr>
 	</table>
 
+
+	<table>
+	<tr>
+		<td colspan="5" align="right" th:text="|総計:${total}|"></td>
+		<td></td>
+	</tr>
+</table>
+
+
+
+
 <!--orderedReplaceに処理を任せた  -->
 	<!-- 商品注文 -->
-	<!-- <table border="1">
+	<!--  <table border="1">
 		<tr>
 			<th>NO</th>
 			<th>商品名</th>
@@ -56,13 +70,7 @@
 
 		</tr>
 	</table>
-	<table>
-	<tr>
-		<td colspan="5" align="right" th:text="|総計:${total}|"></td>
-		<td></td>
-	</tr>
-</table>>
-	購入者の情報を書く
+	<!-- 購入者の情報を書く -->
 	<h3>お客様情報</h3>
 
 	<table>
@@ -85,9 +93,9 @@
 			<td>e-mail</td>
 			<td th:text="${session.user.email}"></td>
 		</tr>
-	</table>
- -->
-	<hr>
+	</table> 
+ 
+	<!-- <hr> -->
 	<a href="/showItem">商品画面一覧へ</a>
 	<!-- ログアウトのreplace -->
 	<span th:replace="/logout"></span>
